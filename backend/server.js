@@ -11,7 +11,7 @@ import uploadRoutes from './routes/uploadRoutes.js';
 import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 // tracking//
 
-import adminTracking from './routes/trakingRouters.js';
+import adminTracking from '../backend/trackingComponent/admin/';
 import userTracking from './routes/saveParcelRoute.js';
 
 const port = process.env.PORT || 5000;
