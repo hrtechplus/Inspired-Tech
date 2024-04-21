@@ -33,4 +33,4 @@ const parcelSchema = new Schema({
 
 const ParcelModel = mongoose.model('Parcel', parcelSchema);
 
-module.exports = ParcelModel;
+export default ParcelModel;

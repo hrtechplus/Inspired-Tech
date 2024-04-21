@@ -1,8 +1,6 @@
 import mongoose from 'mongoose';
 
-const { Schema } = mongoose;
-
-const parcelSchema = new Schema({
+const parcelSchema = mongoose.Schema({
   parcelId: {
     type: String,
     unique: true,
@@ -26,10 +24,11 @@ const parcelSchema = new Schema({
     required: [true, "Tracking number can't be blank"],
   },
   user: {
-    type: Schema.Types.ObjectId,
-    ref: 'Users',
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User', // Assuming the user model is named 'User'
     required: true,
   },
 });
 
-export default mongoose.model('Parcel', parcelSchema);
+const ParcelModel = mongoose.model('Parcel', parcelSchema);
+export default ParcelModel;

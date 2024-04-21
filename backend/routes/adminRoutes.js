@@ -1,16 +1,15 @@
 import express from 'express';
 
 const router = express.Router();
-import { Parcel } from '../models/parcelModel';
-import { UserModel } from '../models/userModel';
-
+import ParcelModel from '../models/tracking/parcelSchema.js';
+import UserModel from '../models/tracking/userModel.js';
 // GET parcel by tracking number
 router.get('/admin/parcels/:trackingNumber', async (req, res) => {
   try {
     const trackingNumber = req.params.trackingNumber;
 
     // Find the parcel with the given tracking number and populate the user details
-    const parcel = await Parcel.findOne({ trackingNumber });
+    const parcel = await ParcelModel.findOne({ trackingNumber });
 
     if (!parcel) {
       return res.status(404).json({ error: 'Parcel not found' });
@@ -27,7 +26,7 @@ router.get('/admin/parcels/:trackingNumber', async (req, res) => {
 router.get('/admin/parcels', async (req, res) => {
   try {
     // Fetch all parcels and populate user details for each parcel
-    const parcels = await Parcel.find();
+    const parcels = await ParcelModel.find();
     // Retrieve user details using user object ID
     const user = await UserModel.findById(parcels.user);
 
@@ -43,7 +42,7 @@ router.get('/admin/parcels', async (req, res) => {
 router.post('/admin/parcels', async (req, res) => {
   try {
     // Create a new parcel using the request body
-    const newParcel = await Parcel.create(req.body);
+    const newParcel = await ParcelModel.create(req.body);
     res.status(201).json(newParcel);
   } catch (error) {
     console.error('Error creating parcel:', error);
@@ -56,14 +55,14 @@ router.put('/admin/parcels/:trackingNumber', async (req, res) => {
   try {
     const trackingNumber = req.params.trackingNumber;
     // Find the parcel with the given tracking number
-    const parcel = await Parcel.findOne({ trackingNumber });
+    const parcel = await ParcelModel.findOne({ trackingNumber });
     if (!parcel) {
       return res.status(404).json({ error: 'Parcel not found' });
     }
     // Update the parcel data with the request body
     Object.assign(parcel, req.body);
     // Save the updated parcel
-    const updatedParcel = await parcel.save();
+    const updatedParcel = await ParcelModel.save();
     res.status(200).json(updatedParcel);
   } catch (error) {
     console.error('Error updating parcel:', error);
@@ -110,7 +109,9 @@ router.delete('/admin/parcels/:trackingNumber', async (req, res) => {
   try {
     const trackingNumber = req.params.trackingNumber;
     // Find and delete the parcel with the given tracking number
-    const deletedParcel = await Parcel.findOneAndDelete({ trackingNumber });
+    const deletedParcel = await ParcelModel.findOneAndDelete({
+      trackingNumber,
+    });
     if (!deletedParcel) {
       return res.status(404).json({ error: 'Parcel not found' });
     }
@@ -153,7 +154,7 @@ router.post('/addparcels', async (req, res) => {
     } = req.body;
 
     // Create a new parcel instance
-    const newParcel = new Parcel({
+    const newParcel = new ParcelModel({
       parcelId,
       status,
       handOverDate,

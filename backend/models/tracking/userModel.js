@@ -1,8 +1,6 @@
 import mongoose from 'mongoose';
 
-const { Schema } = mongoose;
-
-const userSchema = new Schema({
+const userSchema = mongoose.Schema({
   username: {
     type: String,
     lowercase: true,
@@ -28,12 +26,13 @@ const userSchema = new Schema({
     default: 'user',
   },
   address: {
-    street: String,
-    city: String,
-    state: String,
-    postalCode: String,
-    country: String,
+    street: { type: String },
+    city: { type: String },
+    state: { type: String },
+    postalCode: { type: String },
+    country: { type: String },
   },
 });
 
+const UserModel = mongoose.model('ParcelUser', userSchema);
 export default UserModel;
