@@ -37,7 +37,9 @@ const CartScreen = () => {
   return (
     <Row>
       <Col md={8}>
-        <h1 style={{ marginBottom: '20px' }}>Shopping Cart</h1>
+        <h1 class='text-primary ' style={{ marginBottom: '20px' }}>
+          Shopping Cart
+        </h1>
         {cartItems.length === 0 ? (
           <Message>
             Your cart is empty <Link to='/'>Go Back</Link>
@@ -85,13 +87,13 @@ const CartScreen = () => {
         )}
       </Col>
       <Col md={4}>
-        <Card>
+        <Card class=' rounded-lg'>
           <ListGroup variant='flush'>
             <ListGroup.Item>
-              <h2>
+              <h3 class='text-primary '>
                 Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)})
                 items
-              </h2>
+              </h3>
               $
               {cartItems
                 .reduce((acc, item) => acc + item.qty * item.price, 0)
@@ -101,8 +103,14 @@ const CartScreen = () => {
               <Button
                 type='button'
                 className='btn-block'
+                class='btn btn-primary '
                 disabled={cartItems.length === 0}
                 onClick={checkoutHandler}
+                style={{
+                  backgroundColor: '#387ADF',
+                  outline: 'none',
+                  border: 'none',
+                }}
               >
                 Proceed To Checkout
               </Button>
