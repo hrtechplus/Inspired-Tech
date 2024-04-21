@@ -43,7 +43,9 @@ const LoginScreen = () => {
   return (
     <FormContainer>
       <div className='login-container'>
-        <h1 className='login-heading'>Sign In</h1>
+        <h1 className='login-heading' class='text-primary text-center '>
+          Sign In
+        </h1>
 
         <Form onSubmit={submitHandler} className='login-form'>
           <Form.Group controlId='email'>
@@ -71,6 +73,7 @@ const LoginScreen = () => {
             type='submit'
             variant='primary'
             className='login-btn'
+            style={{ background: '#387ADF' }}
           >
             {isLoading ? 'Signing In...' : 'Sign In'}
           </Button>

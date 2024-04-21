@@ -46,64 +46,68 @@ const PlaceOrderScreen = () => {
   return (
     <>
       <CheckoutSteps step1 step2 step3 step4 />
-      <Row>
+      <Row className='mt-3'>
         <Col md={8}>
-          <ListGroup variant='flush'>
-            <ListGroup.Item>
-              <h2>Shipping</h2>
-              <p>
-                <strong>Address:</strong>
-                {cart.shippingAddress.address}, {cart.shippingAddress.city}{' '}
-                {cart.shippingAddress.postalCode},{' '}
-                {cart.shippingAddress.country}
-              </p>
-            </ListGroup.Item>
+          <Card>
+            <ListGroup variant='flush'>
+              <ListGroup.Item>
+                <h2 className='text-primary'>Shipping</h2>
+                <p>
+                  <strong>Address: </strong>
+                  {cart.shippingAddress.address}, {cart.shippingAddress.city}{' '}
+                  {cart.shippingAddress.postalCode},{' '}
+                  {cart.shippingAddress.country}
+                </p>
+              </ListGroup.Item>
 
-            <ListGroup.Item>
-              <h2>Payment Method</h2>
-              <strong>Method: </strong>
-              {cart.paymentMethod}
-            </ListGroup.Item>
+              <ListGroup.Item>
+                <h2 className='text-primary'>Payment Method</h2>
+                <p>
+                  <strong>Method: </strong>
+                  {cart.paymentMethod}
+                </p>
+              </ListGroup.Item>
 
-            <ListGroup.Item>
-              <h2>Order Items</h2>
-              {cart.cartItems.length === 0 ? (
-                <Message>Your cart is empty</Message>
-              ) : (
-                <ListGroup variant='flush'>
-                  {cart.cartItems.map((item, index) => (
-                    <ListGroup.Item key={index}>
-                      <Row>
-                        <Col md={1}>
-                          <Image
-                            src={item.image}
-                            alt={item.name}
-                            fluid
-                            rounded
-                          />
-                        </Col>
-                        <Col>
-                          <Link to={`/product/${item.product}`}>
-                            {item.name}
-                          </Link>
-                        </Col>
-                        <Col md={4}>
-                          {item.qty} x ${item.price} = $
-                          {(item.qty * (item.price * 100)) / 100}
-                        </Col>
-                      </Row>
-                    </ListGroup.Item>
-                  ))}
-                </ListGroup>
-              )}
-            </ListGroup.Item>
-          </ListGroup>
+              <ListGroup.Item>
+                <h2 className='text-primary'>Order Items</h2>
+                {cart.cartItems.length === 0 ? (
+                  <Message>Your cart is empty</Message>
+                ) : (
+                  <ListGroup variant='flush'>
+                    {cart.cartItems.map((item, index) => (
+                      <ListGroup.Item key={index}>
+                        <Row className='align-items-center'>
+                          <Col xs={3} md={2}>
+                            <Image
+                              src={item.image}
+                              alt={item.name}
+                              fluid
+                              rounded
+                            />
+                          </Col>
+                          <Col>
+                            <Link to={`/product/${item.product}`}>
+                              {item.name}
+                            </Link>
+                          </Col>
+                          <Col md={3}>
+                            {item.qty} x ${item.price} = $
+                            {(item.qty * (item.price * 100)) / 100}
+                          </Col>
+                        </Row>
+                      </ListGroup.Item>
+                    ))}
+                  </ListGroup>
+                )}
+              </ListGroup.Item>
+            </ListGroup>
+          </Card>
         </Col>
         <Col md={4}>
           <Card>
             <ListGroup variant='flush'>
               <ListGroup.Item>
-                <h2>Order Summary</h2>
+                <h2 className='text-primary'>Order Summary</h2>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
@@ -138,8 +142,9 @@ const PlaceOrderScreen = () => {
                 <Button
                   type='button'
                   className='btn-block'
-                  disabled={cart.cartItems === 0}
+                  disabled={cart.cartItems.length === 0}
                   onClick={placeOrderHandler}
+                  style={{ background: '#387ADF' }}
                 >
                   Place Order
                 </Button>
