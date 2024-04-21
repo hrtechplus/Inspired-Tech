@@ -34,10 +34,10 @@ const Header = () => {
     <header>
       <Navbar
         bg='text-primary'
-        variant='blue'
+        variant='white'
         expand='lg'
         collapseOnSelect
-        className='shadow-lg rounded'
+        className='shadow-lg '
         style={{ backgroundColor: '#387ADF' }}
       >
         <Container>
