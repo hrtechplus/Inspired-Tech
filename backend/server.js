@@ -9,6 +9,10 @@ import userRoutes from './routes/userRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';
 import uploadRoutes from './routes/uploadRoutes.js';
 import { notFound, errorHandler } from './middleware/errorMiddleware.js';
+// tracking//
+
+import adminTracking from './routes/trakingRouters.js';
+import userTracking from './routes/saveParcelRoute.js';
 
 const port = process.env.PORT || 5000;
 
@@ -24,6 +28,10 @@ app.use('/api/products', productRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/upload', uploadRoutes);
+
+// traking
+//app.use(adminTracking);
+//app.use(userTracking);
 
 app.get('/api/config/paypal', (req, res) =>
   res.send({ clientId: process.env.PAYPAL_CLIENT_ID })
