@@ -1,6 +1,8 @@
 import express from 'express';
 
 const router = express.Router();
+import { Parcel } from '../models/parcelModel';
+import { UserModel } from '../models/userModel';
 
 // GET parcel by tracking number
 router.get('/admin/parcels/:trackingNumber', async (req, res) => {
