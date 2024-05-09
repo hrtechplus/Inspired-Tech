@@ -78,7 +78,7 @@ hasindu@gmail.com (Admin)
 
 The MIT License
 
-Copyright (c) 2024 hasindu.me Media https://hasindu.me
+Copyright (c) 2024 hasindu.me  https://hasindu.me
 
 
 
