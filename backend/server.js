@@ -12,6 +12,7 @@ import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 // tracking//
 
 import adminTracking from './routes/adminRoutes.js';
+import userTracking from './routes/userRoutes.js';
 
 const port = process.env.PORT || 5000;
 
@@ -31,7 +32,7 @@ app.use('/api/upload', uploadRoutes);
 // traking
 
 app.use(adminTracking);
-//app.use(userTracking);
+app.use(userTracking);
 
 app.get('/api/config/paypal', (req, res) =>
   res.send({ clientId: process.env.PAYPAL_CLIENT_ID })

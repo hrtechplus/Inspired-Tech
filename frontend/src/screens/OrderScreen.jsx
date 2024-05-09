@@ -63,15 +63,15 @@ const OrderScreen = () => {
       try {
         await payOrder({ orderId, details });
         refetch();
-        toast.success('Order is paid');
+        // toast.success('Order is paid');
       } catch (err) {
-        toast.error(err?.data?.message || err.error);
+        // toast.error(err?.data?.message || err.error);
       }
     });
   }
 
   function onError(err) {
-    toast.error(err.message);
+    // toast.error(err.message);
   }
 
   function createOrder(data, actions) {

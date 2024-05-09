@@ -33,21 +33,18 @@ const ProfileScreen = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      toast.error('Passwords do not match');
+      // toast.error('Passwords do not match');
     } else {
       try {
         const res = await updateProfile({
-          // NOTE: here we don't need the _id in the request payload as this is
-          // not used in our controller.
-          // _id: userInfo._id,
           name,
           email,
           password,
         }).unwrap();
         dispatch(setCredentials({ ...res }));
-        toast.success('Profile updated successfully');
+        //toast.success('Profile updated successfully');
       } catch (err) {
-        toast.error(err?.data?.message || err.error);
+        //toast.error(err?.data?.message || err.error);
       }
     }
   };
