@@ -4,18 +4,8 @@
 
 <img src="./frontend/public/images/logoIns.png">
 
-This project is part of MERN Stack From Scratch. It is a full-featured shopping cart with PayPal ,credit/debit payments and the Inbuit Parcel tracking System. 
+This project is part of MERN Stack From Scratch. It is a full-featured shopping cart with PayPal, credit/debit payments, and the Inbuit Parcel Tracking System. 
 
-
-
-
-- [Features](#features)
-- [Usage](#usage)
-  - [Env Variables](#env-variables)
-  - [Install Dependencies (frontend & backend)](#install-dependencies-frontend--backend)
-  - [Run](#run)
-- [Build & Deploy](#build--deploy)
-  - [Seed Database](#seed-database)
 
 
 <!-- tocstop -->
