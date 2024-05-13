@@ -21,12 +21,13 @@ This project is part of MERN Stack From Scratch. It is a full-featured shopping 
 - Supplier Management system
 - User profile with orders
 - Admin product management
-- Admin user management
+- Admin user managementhasindu
+
 - Admin Order details page
 - Mark orders as delivered option
 - Checkout process (shipping, payment method, etc)
 - PayPal / credit card integration
-- Database seeder
+- Database seeder...
   
 
 
