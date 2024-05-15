@@ -9,14 +9,10 @@ import userRoutes from './routes/userRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';
 import uploadRoutes from './routes/uploadRoutes.js';
 import { notFound, errorHandler } from './middleware/errorMiddleware.js';
-import cors from 'cors';
-
 // tracking//
+
 import adminTracking from './routes/adminRoutes.js';
 import userTracking from './routes/userRoutes.js';
-
-// Email sending route
-import emailRoute from './routes/emailRoute.js';
 
 const port = process.env.PORT || 5000;
 
@@ -33,16 +29,10 @@ app.use('/api/users', userRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/upload', uploadRoutes);
 
-// Tracking
+// traking
+
 app.use(adminTracking);
 app.use(userTracking);
-
-// Email route
-app.use('/api/email', emailRoute);
-
-app.use(cors({
-    origin: 'http://localhost:3000' // Replace with your frontend URL
-}));
 
 app.get('/api/config/paypal', (req, res) =>
   res.send({ clientId: process.env.PAYPAL_CLIENT_ID })
