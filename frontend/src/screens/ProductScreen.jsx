@@ -32,11 +32,6 @@ const ProductScreen = () => {
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState('');
 
-  const addToCartHandler = () => {
-    dispatch(addToCart({ ...product, qty }));
-    navigate('/cart');
-  };
-
   const {
     data: product,
     isLoading,
@@ -49,19 +44,31 @@ const ProductScreen = () => {
   const [createReview, { isLoading: loadingProductReview }] =
     useCreateReviewMutation();
 
+  const addToCartHandler = () => {
+    if (qty > 0 && qty <= product.countInStock) {
+      dispatch(addToCart({ ...product, qty }));
+      navigate('/cart');
+    } else {
+      toast.error('Invalid quantity selected');
+    }
+  };
+
   const submitHandler = async (e) => {
     e.preventDefault();
-
-    try {
-      await createReview({
-        productId,
-        rating,
-        comment,
-      }).unwrap();
-      refetch();
-      toast.success('Review created successfully');
-    } catch (err) {
-      toast.error(err?.data?.message || err.error);
+    if (rating && comment) {
+      try {
+        await createReview({
+          productId,
+          rating,
+          comment,
+        }).unwrap();
+        refetch();
+        toast.success('Review created successfully');
+      } catch (err) {
+        toast.error(err?.data?.message || err.error);
+      }
+    } else {
+      toast.error('Please fill in all the fields');
     }
   };
 

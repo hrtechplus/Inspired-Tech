@@ -12,18 +12,29 @@ const ShippingScreen = () => {
 
   const [address, setAddress] = useState(shippingAddress.address || '');
   const [city, setCity] = useState(shippingAddress.city || '');
-  const [postalCode, setPostalCode] = useState(
-    shippingAddress.postalCode || ''
-  );
+  const [postalCode, setPostalCode] = useState(shippingAddress.postalCode || '');
   const [country, setCountry] = useState(shippingAddress.country || '');
+  const [errors, setErrors] = useState({});
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const validateForm = () => {
+    let tempErrors = {};
+    tempErrors.address = address ? '' : 'Address is required.';
+    tempErrors.city = city ? '' : 'City is required.';
+    tempErrors.postalCode = postalCode.match(/^[0-9]{5}$/) ? '' : 'Postal Code is invalid.';
+    tempErrors.country = country ? '' : 'Country is required.';
+    setErrors(tempErrors);
+    return Object.values(tempErrors).every(x => x === '');
+  };
+
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(saveShippingAddress({ address, city, postalCode, country }));
-    navigate('/payment');
+    if (validateForm()) {
+      dispatch(saveShippingAddress({ address, city, postalCode, country }));
+      navigate('/payment');
+    }
   };
 
   return (
@@ -37,9 +48,12 @@ const ShippingScreen = () => {
             type='text'
             placeholder='Enter address'
             value={address}
-            required
             onChange={(e) => setAddress(e.target.value)}
-          ></Form.Control>
+            isInvalid={!!errors.address}
+          />
+          <Form.Control.Feedback type='invalid'>
+            {errors.address}
+          </Form.Control.Feedback>
         </Form.Group>
 
         <Form.Group className='my-2' controlId='city'>
@@ -48,9 +62,12 @@ const ShippingScreen = () => {
             type='text'
             placeholder='Enter city'
             value={city}
-            required
             onChange={(e) => setCity(e.target.value)}
-          ></Form.Control>
+            isInvalid={!!errors.city}
+          />
+          <Form.Control.Feedback type='invalid'>
+            {errors.city}
+          </Form.Control.Feedback>
         </Form.Group>
 
         <Form.Group className='my-2' controlId='postalCode'>
@@ -59,9 +76,12 @@ const ShippingScreen = () => {
             type='text'
             placeholder='Enter postal code'
             value={postalCode}
-            required
             onChange={(e) => setPostalCode(e.target.value)}
-          ></Form.Control>
+            isInvalid={!!errors.postalCode}
+          />
+          <Form.Control.Feedback type='invalid'>
+            {errors.postalCode}
+          </Form.Control.Feedback>
         </Form.Group>
 
         <Form.Group className='my-2' controlId='country'>
@@ -70,9 +90,12 @@ const ShippingScreen = () => {
             type='text'
             placeholder='Enter country'
             value={country}
-            required
             onChange={(e) => setCountry(e.target.value)}
-          ></Form.Control>
+            isInvalid={!!errors.country}
+          />
+          <Form.Control.Feedback type='invalid'>
+            {errors.country}
+          </Form.Control.Feedback>
         </Form.Group>
 
         <Button type='submit' variant='primary'>
