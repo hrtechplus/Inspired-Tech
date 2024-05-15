@@ -35,7 +35,7 @@ import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 
 // tracking
 import TrackingScreen from './screens/admin/TrackingMenu';
-
+import SampleTest from './screens/admin/SampleTest';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -65,7 +65,7 @@ const router = createBrowserRouter(
       <Route path='' element={<AdminRoute />}>
         <Route path='/admin/orderlist' element={<OrderListScreen />} />
         <Route path='/admin/productlist' element={<ProductListScreen />} />
-        <Route path='/admin/tracking' element={<TrackingScreen />} />
+        <Route path='/admin/tracking' element={<SampleTest />} />
         <Route
           path='/admin/productlist/:pageNumber'
           element={<ProductListScreen />}
